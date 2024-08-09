@@ -50,7 +50,7 @@ public class UIAuthentication : BaseUIBehaviourCanvasGroup
     private void OnLoginSuccess(string response)
     {
         JObject responseObject = JObject.Parse(response);
-        UserData userData = JsonConvert.DeserializeObject<UserData>(responseObject["user"].ToString());
+        UserData userData = JsonConvert.DeserializeObject<UserData>(responseObject.ToString());
         CoreDataManager.Instance.UserData = userData;
         UICanvasManager.Instance.UIMessageBox.Show(responseObject["message"].ToString(), () =>
         {
