@@ -1321,9 +1321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971aa69ced43a004791cd1d765a0cb06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiMessageBox: {fileID: 1618833224}
-  uiAuthentication: {fileID: 1827270032}
-  uiLobby: {fileID: 706472340}
+  _uiMessageBox: {fileID: 0}
+  _uiAuthentication: {fileID: 0}
+  _uiLobby: {fileID: 0}
 --- !u!1 &488961290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,11 +2703,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6df0848fd4f5a445888f112c3796207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 706472339}
-  textDiamond: {fileID: 1855758069}
-  sliderHealthBar: {fileID: 830391475}
-  buttonAddDiamond: {fileID: 85923537}
-  buttonStart: {fileID: 1453563717}
+  _canvasGroup: {fileID: 706472339}
+  _textDiamond: {fileID: 1855758069}
+  _sliderHealthBar: {fileID: 830391475}
+  _buttonAddDiamond: {fileID: 85923537}
+  _buttonStart: {fileID: 1453563717}
 --- !u!1 &728011132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3939,11 +3939,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bc41eb0555f0e4191b2d2a55f264b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 1132802392}
-  inputUserName: {fileID: 2022878172}
-  inputPassword: {fileID: 1392966815}
-  inputConfirmPassword: {fileID: 1399643409}
-  buttonSignUp: {fileID: 653191522}
+  _canvasGroup: {fileID: 1132802392}
+  _inputUserName: {fileID: 2022878172}
+  _inputPassword: {fileID: 1392966815}
+  _inputConfirmPassword: {fileID: 1399643409}
+  _buttonSignUp: {fileID: 653191522}
 --- !u!225 &1132802392
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4348,7 +4348,7 @@ GameObject:
   - component: {fileID: 1330744180}
   - component: {fileID: 1330744179}
   m_Layer: 5
-  m_Name: Button
+  m_Name: 'Button : OK'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5633,9 +5633,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438c94fc919ecdb4f9179e74f71a6793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 1618833223}
-  textMessage: {fileID: 597722636}
-  buttonOk: {fileID: 1330744179}
+  _canvasGroup: {fileID: 1618833223}
+  _textMessage: {fileID: 597722636}
+  _buttonOk: {fileID: 1330744179}
 --- !u!1 &1647969964
 GameObject:
   m_ObjectHideFlags: 0
@@ -6220,9 +6220,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827270029}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &1827270032
 MonoBehaviour:
@@ -6236,9 +6236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42cade67f62463f419b01333d31fe157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 1827270031}
-  uiLogInPanel: {fileID: 1892521677}
-  uiSignUpPanel: {fileID: 1132802391}
+  _canvasGroup: {fileID: 1827270031}
+  _uiLogInPanel: {fileID: 1892521677}
+  _uiSignUpPanel: {fileID: 1132802391}
 --- !u!1 &1847713572
 GameObject:
   m_ObjectHideFlags: 0
@@ -6424,7 +6424,7 @@ GameObject:
   - component: {fileID: 1855758070}
   - component: {fileID: 1855758069}
   m_Layer: 5
-  m_Name: 'Text : diamond'
+  m_Name: 'Text : Diamond'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6469,7 +6469,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 12750
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6496,7 +6496,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.7
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6651,7 +6651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a06daff6b8f1e8449edc540062de88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userData:
+  _userData:
     id: 
     username: 
     diamonds: 0
@@ -6881,11 +6881,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af70bbbff061024283cf8d97e61c9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 1892521678}
-  inputUserName: {fileID: 1657460097}
-  inputPassword: {fileID: 1062483222}
-  buttonSignUp: {fileID: 1093433483}
-  buttonLogin: {fileID: 1219664338}
+  _canvasGroup: {fileID: 1892521678}
+  _inputUserName: {fileID: 1657460097}
+  _inputPassword: {fileID: 1062483222}
+  _buttonSignUp: {fileID: 1093433483}
+  _buttonLogin: {fileID: 1219664338}
 --- !u!225 &1892521678
 CanvasGroup:
   m_ObjectHideFlags: 0

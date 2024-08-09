@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class CoreDataManager : Singleton<CoreDataManager>
 {
-    [SerializeField] private UserData userData;
+    [SerializeField] private UserData _userData;
 
-    public UserData UserData { get => userData; set => userData = value; }
+    public UserData UserData { get => _userData; set => _userData = value; }
 
     public void ClearUserData()
     {
-        userData = new UserData();
+        _userData = new UserData();
     }
 }

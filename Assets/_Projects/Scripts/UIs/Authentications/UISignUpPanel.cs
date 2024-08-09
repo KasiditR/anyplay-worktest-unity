@@ -5,50 +5,50 @@ using UnityEngine.UI;
 
 public class UISignUpPanel : BaseUIBehaviourCanvasGroup
 {
-    [SerializeField] private TMP_InputField inputUserName;
-    [SerializeField] private TMP_InputField inputPassword;
-    [SerializeField] private TMP_InputField inputConfirmPassword;
-    [SerializeField] private Button buttonSignUp;
+    [SerializeField] private TMP_InputField _inputUserName;
+    [SerializeField] private TMP_InputField _inputPassword;
+    [SerializeField] private TMP_InputField _inputConfirmPassword;
+    [SerializeField] private Button _buttonSignUp;
 
-    private UIAuthentication uiAuthentication;
+    private UIAuthentication _uiAuthentication;
 
     public void Initialize(UIAuthentication uiAuthentication)
     {
-        this.uiAuthentication = uiAuthentication;
+        this._uiAuthentication = uiAuthentication;
     }
 
     public override void Show(Action onDone = null)
     {
         base.Show(onDone);
-        inputUserName.text = string.Empty;
-        inputPassword.text = string.Empty;
-        inputConfirmPassword.text = string.Empty;
+        _inputUserName.text = string.Empty;
+        _inputPassword.text = string.Empty;
+        _inputConfirmPassword.text = string.Empty;
     }
 
     protected override void OnEnable()
     {
-        buttonSignUp.onClick.AddListener(OnSignUpClicked);
+        _buttonSignUp.onClick.AddListener(OnSignUpClicked);
     }
 
     protected override void OnDisable()
     {
-        buttonSignUp.onClick.RemoveAllListeners();
+        _buttonSignUp.onClick.RemoveAllListeners();
     }
 
     private void OnSignUpClicked()
     {
-        if (string.IsNullOrEmpty(inputUserName.text) || string.IsNullOrEmpty(inputPassword.text) || string.IsNullOrEmpty(inputConfirmPassword.text))
+        if (string.IsNullOrEmpty(_inputUserName.text) || string.IsNullOrEmpty(_inputPassword.text) || string.IsNullOrEmpty(_inputConfirmPassword.text))
         {
             UICanvasManager.Instance.UIMessageBox.Show("Please fill in all fields.");
             return;
         }
 
-        if (inputPassword.text != inputConfirmPassword.text)
+        if (_inputPassword.text != _inputConfirmPassword.text)
         {
             UICanvasManager.Instance.UIMessageBox.Show("Passwords do not match. Please try again.");
             return;
         }
 
-        uiAuthentication.SignUp(inputUserName.text, inputPassword.text, inputConfirmPassword.text);
+        _uiAuthentication.SignUp(_inputUserName.text, _inputPassword.text, _inputConfirmPassword.text);
     }
 }

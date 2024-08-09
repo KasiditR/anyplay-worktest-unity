@@ -8,40 +8,41 @@ using UnityEngine.EventSystems;
 public abstract class BaseUIBehaviourCanvasGroup : UIBehaviour
 {
     [Header("Canvas Group Setting")]
-    [SerializeField] private CanvasGroup canvasGroup = default;
+    [SerializeField] private CanvasGroup _canvasGroup = default;
 
-    private Tweener showTween;
-    private Tweener hideTween;
+    private Tweener _showTween;
+    private Tweener _hideTween;
 
-    private Coroutine showCoroutine;
-    private Coroutine hideCoroutine;
+    private Coroutine _showCoroutine;
+    private Coroutine _hideCoroutine;
 
     public event Action OnShow;
     public event Action OnHide;
 
     private const float ALPHA_FADE_DURATION = 0.25f;
+
     protected float alpha
     {
-        get => canvasGroup.alpha;
-        set => canvasGroup.alpha = value;
+        get => _canvasGroup.alpha;
+        set => _canvasGroup.alpha = value;
     }
 
     protected bool interactable
     {
-        get => canvasGroup.interactable;
-        set => canvasGroup.interactable = value;
+        get => _canvasGroup.interactable;
+        set => _canvasGroup.interactable = value;
     }
 
     protected bool blocksRaycasts
     {
-        get => canvasGroup.blocksRaycasts;
-        set => canvasGroup.blocksRaycasts = value;
+        get => _canvasGroup.blocksRaycasts;
+        set => _canvasGroup.blocksRaycasts = value;
     }
 
     protected bool ignoreParentGroups
     {
-        get => canvasGroup.ignoreParentGroups;
-        set => canvasGroup.ignoreParentGroups = value;
+        get => _canvasGroup.ignoreParentGroups;
+        set => _canvasGroup.ignoreParentGroups = value;
     }
 
     public virtual void Show(Action onDone = null)
@@ -50,17 +51,17 @@ public abstract class BaseUIBehaviourCanvasGroup : UIBehaviour
         blocksRaycasts = true;
         ignoreParentGroups = false;
 
-        if (showCoroutine != null)
+        if (_showCoroutine != null)
         {
-            StopCoroutine(showCoroutine);
+            StopCoroutine(_showCoroutine);
         }
 
-        if (showTween != null)
+        if (_showTween != null)
         {
-            showTween.Kill();
+            _showTween.Kill();
         }
 
-        showCoroutine = StartCoroutine(ShowRoutine(onDone));
+        _showCoroutine = StartCoroutine(ShowRoutine(onDone));
     }
 
     public virtual void Hide(Action onDone = null)
@@ -69,22 +70,22 @@ public abstract class BaseUIBehaviourCanvasGroup : UIBehaviour
         blocksRaycasts = false;
         ignoreParentGroups = false;
 
-        if (hideCoroutine != null)
+        if (_hideCoroutine != null)
         {
-            StopCoroutine(hideCoroutine);
+            StopCoroutine(_hideCoroutine);
         }
 
-        if (hideTween != null)
+        if (_hideTween != null)
         {
-            hideTween.Kill();
+            _hideTween.Kill();
         }
 
-        hideCoroutine = StartCoroutine(HideRoutine(onDone));
+        _hideCoroutine = StartCoroutine(HideRoutine(onDone));
     }
 
     protected virtual IEnumerator ShowRoutine(Action onDone = null)
     {
-        showTween = DOVirtual.Float(alpha, 1, ALPHA_FADE_DURATION, value => alpha = value).SetUpdate(UpdateType.Late, true);
+        _showTween = DOVirtual.Float(alpha, 1, ALPHA_FADE_DURATION, value => alpha = value).SetUpdate(UpdateType.Late, true);
         yield return new WaitUntil(() => alpha == 1);
         yield return new WaitForEndOfFrame();
         onDone?.Invoke();
@@ -93,7 +94,7 @@ public abstract class BaseUIBehaviourCanvasGroup : UIBehaviour
 
     protected virtual IEnumerator HideRoutine(Action onDone = null)
     {
-        hideTween = DOVirtual.Float(alpha, 0, ALPHA_FADE_DURATION, value => alpha = value).SetUpdate(UpdateType.Late, true);
+        _hideTween = DOVirtual.Float(alpha, 0, ALPHA_FADE_DURATION, value => alpha = value).SetUpdate(UpdateType.Late, true);
         yield return new WaitUntil(() => alpha == 0);
         yield return new WaitForEndOfFrame();
         onDone?.Invoke();
@@ -104,7 +105,7 @@ public abstract class BaseUIBehaviourCanvasGroup : UIBehaviour
     protected override void Reset()
     {
         base.Reset();
-        canvasGroup ??= GetComponent<CanvasGroup>();
+        _canvasGroup ??= GetComponent<CanvasGroup>();
     }
 #endif
 }

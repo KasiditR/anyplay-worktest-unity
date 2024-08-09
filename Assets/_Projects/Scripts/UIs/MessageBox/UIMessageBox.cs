@@ -5,34 +5,34 @@ using UnityEngine.UI;
 
 public class UIMessageBox : BaseUIBehaviourCanvasGroup
 {
-    [SerializeField] private TMP_Text textMessage;
-    [SerializeField] private Button buttonOk;
-    private Action onButtonOkClick;
+    [SerializeField] private TMP_Text _textMessage;
+    [SerializeField] private Button _buttonOk;
+    private Action _onButtonOkClick;
 
     public void Show(string message, Action onClickOk = null, Action onDone = null)
     {
-        textMessage.text = message;
-        onButtonOkClick = onClickOk;
+        _textMessage.text = message;
+        _onButtonOkClick = onClickOk;
         base.Show(onDone);
     }
     public override void Hide(Action onDone = null)
     {
         base.Hide(onDone);
-        textMessage.text = string.Empty;
+        _textMessage.text = string.Empty;
     }
     protected override void OnEnable()
     {
-        buttonOk.onClick.AddListener(OnButtonOkClicked);
+        _buttonOk.onClick.AddListener(OnButtonOkClicked);
     }
 
     protected override void OnDisable()
     {
-        buttonOk.onClick.RemoveAllListeners();
+        _buttonOk.onClick.RemoveAllListeners();
     }
 
     private void OnButtonOkClicked()
     {
-        onButtonOkClick?.Invoke();
+        _onButtonOkClick?.Invoke();
         this.Hide();
     }
 }

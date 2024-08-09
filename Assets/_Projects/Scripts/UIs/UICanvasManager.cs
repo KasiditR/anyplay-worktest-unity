@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class UICanvasManager : Singleton<UICanvasManager>
 {
-    [SerializeField] private UIMessageBox uiMessageBox;
-    [SerializeField] private UIAuthentication uiAuthentication;
-    [SerializeField] private UILobby uiLobby;
+    [SerializeField] private UIMessageBox _uiMessageBox;
+    [SerializeField] private UIAuthentication _uiAuthentication;
+    [SerializeField] private UILobby _uiLobby;
 
-    public UIMessageBox UIMessageBox { get => uiMessageBox; }
-    public UIAuthentication UIAuthentication { get => uiAuthentication; }
-    public UILobby UILobby { get => uiLobby; }
+    public UIMessageBox UIMessageBox { get => _uiMessageBox; }
+    public UIAuthentication UIAuthentication { get => _uiAuthentication; }
+    public UILobby UILobby { get => _uiLobby; }
 
     public void Start()
     {
-        uiAuthentication.Show();
+        _uiAuthentication.Show();
         UIMessageBox.Hide();
-        uiLobby.Hide();
+        _uiLobby.Hide();
     }
 }

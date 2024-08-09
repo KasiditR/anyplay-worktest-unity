@@ -5,14 +5,14 @@ using Newtonsoft.Json.Linq;
 
 public class UIAuthentication : BaseUIBehaviourCanvasGroup
 {
-    [SerializeField] private UILogInPanel uiLogInPanel;
-    [SerializeField] private UISignUpPanel uiSignUpPanel;
+    [SerializeField] private UILogInPanel _uiLogInPanel;
+    [SerializeField] private UISignUpPanel _uiSignUpPanel;
 
     protected override void Awake()
     {
         base.Awake();
-        uiLogInPanel.Initialize(this);
-        uiSignUpPanel.Initialize(this);
+        _uiLogInPanel.Initialize(this);
+        _uiSignUpPanel.Initialize(this);
     }
 
     public override void Show(Action onDone = null)
@@ -24,19 +24,19 @@ public class UIAuthentication : BaseUIBehaviourCanvasGroup
     public override void Hide(Action onDone = null)
     {
         base.Hide(onDone);
-        uiLogInPanel.Hide();
-        uiSignUpPanel.Hide();
+        _uiLogInPanel.Hide();
+        _uiSignUpPanel.Hide();
     }
 
     public void ShowLoginPanel()
     {
-        uiLogInPanel.Show();
-        uiSignUpPanel.Hide();
+        _uiLogInPanel.Show();
+        _uiSignUpPanel.Hide();
     }
     public void ShowSignUpPanel()
     {
-        uiLogInPanel.Hide();
-        uiSignUpPanel.Show();
+        _uiLogInPanel.Hide();
+        _uiSignUpPanel.Show();
     }
 
     public void Login(string userName, string password)

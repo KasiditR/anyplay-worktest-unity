@@ -6,28 +6,28 @@ using UnityEngine.UI;
 
 public class UILobby : BaseUIBehaviourCanvasGroup
 {
-    [SerializeField] private TMP_Text textDiamond;
-    [SerializeField] private Slider sliderHealthBar;
-    [SerializeField] private Button buttonAddDiamond;
-    [SerializeField] private Button buttonStart;
+    [SerializeField] private TMP_Text _textDiamond;
+    [SerializeField] private Slider _sliderHealthBar;
+    [SerializeField] private Button _buttonAddDiamond;
+    [SerializeField] private Button _buttonStart;
 
     public override void Show(Action onDone = null)
     {
-        textDiamond.text = CoreDataManager.Instance.UserData.diamonds.ToString();
-        sliderHealthBar.value = CoreDataManager.Instance.UserData.hearts;
+        _textDiamond.text = CoreDataManager.Instance.UserData.diamonds.ToString();
+        _sliderHealthBar.value = CoreDataManager.Instance.UserData.hearts;
         base.Show(onDone);
     }
 
     protected override void OnEnable()
     {
-        buttonAddDiamond.onClick.AddListener(OnButtonAddDiamondClicked);
-        buttonStart.onClick.AddListener(OnButtonStartClicked);
+        _buttonAddDiamond.onClick.AddListener(OnButtonAddDiamondClicked);
+        _buttonStart.onClick.AddListener(OnButtonStartClicked);
     }
 
     protected override void OnDisable()
     {
-        buttonAddDiamond.onClick.RemoveAllListeners();
-        buttonStart.onClick.RemoveAllListeners();
+        _buttonAddDiamond.onClick.RemoveAllListeners();
+        _buttonStart.onClick.RemoveAllListeners();
     }
 
     private void OnButtonStartClicked()
@@ -47,7 +47,7 @@ public class UILobby : BaseUIBehaviourCanvasGroup
     private void OnAddDiamondSuccess(string response)
     {
         JObject responseObject = JObject.Parse(response);
-        textDiamond.text = responseObject["diamonds"].ToString();
+        _textDiamond.text = responseObject["diamonds"].ToString();
         UICanvasManager.Instance.UIMessageBox.Show(responseObject["message"].ToString());
     }
 
