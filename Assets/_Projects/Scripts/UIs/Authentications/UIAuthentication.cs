@@ -52,11 +52,8 @@ public class UIAuthentication : BaseUIBehaviourCanvasGroup
         JObject responseObject = JObject.Parse(response);
         UserData userData = JsonConvert.DeserializeObject<UserData>(responseObject.ToString());
         CoreDataManager.Instance.UserData = userData;
-        UICanvasManager.Instance.UIMessageBox.Show(responseObject["message"].ToString(), () =>
-        {
-            this.Hide();
-            UICanvasManager.Instance.UILobby.Show();
-        });
+        this.Hide();
+        UICanvasManager.Instance.UILobby.Show();
     }
 
     private void OnLoginFailure(string response)
@@ -76,8 +73,6 @@ public class UIAuthentication : BaseUIBehaviourCanvasGroup
 
     private void OnSignUpSuccess(string response)
     {
-        JObject responseObject = JObject.Parse(response);
-        UICanvasManager.Instance.UIMessageBox.Show(responseObject["message"].ToString());
         ShowLoginPanel();
     }
 

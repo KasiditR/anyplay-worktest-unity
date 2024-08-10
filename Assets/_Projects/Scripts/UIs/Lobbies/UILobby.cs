@@ -53,8 +53,11 @@ public class UILobby : BaseUIBehaviourCanvasGroup
     private void OnAddDiamondSuccess(string response)
     {
         JObject responseObject = JObject.Parse(response);
-        _textDiamond.text = responseObject["diamonds"].ToString();
-        UICanvasManager.Instance.UIMessageBox.Show(responseObject["message"].ToString());
+        if (int.TryParse(responseObject["diamonds"].ToString(), out int diamonds))
+        {
+            _textDiamond.text = diamonds.ToString();
+            CoreDataManager.Instance.UserData.diamonds = diamonds;
+        }
     }
 
     private void OnAddDaimonFailure(string response)
