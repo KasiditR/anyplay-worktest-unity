@@ -41,10 +41,12 @@ public class APIManager : Singleton<APIManager>
 
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
+                Debug.Log($"Error : {endpoint} \n {jsonPayload}");
                 onError?.Invoke(request.downloadHandler.text);
             }
             else
             {
+                Debug.Log($"Success : {endpoint} \n {jsonPayload}");
                 onSuccess?.Invoke(request.downloadHandler.text);
             }
         }

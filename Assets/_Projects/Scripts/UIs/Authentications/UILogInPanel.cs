@@ -11,6 +11,7 @@ public class UILogInPanel : BaseUIBehaviourCanvasGroup
     [SerializeField] private Button _buttonLogin;
 
     private UIAuthentication _uiAuthentication;
+
     public void Initialize(UIAuthentication uiAuthentication)
     {
         this._uiAuthentication = uiAuthentication;
