@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class APIManager : Singleton<APIManager>
 {
-    private const string BASE_URL = "http://localhost/anyplay-worktest-php/public/";
+    private const string BASE_URL = "https://test-piggy.codedefeat.com/worktest/dev05/";
 
     private IEnumerator SendRequest(string endpoint, string httpMethod, string jsonPayload, Action<string> onSuccess, Action<string> onError)
     {
@@ -41,12 +41,12 @@ public class APIManager : Singleton<APIManager>
 
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.Log($"Error : {endpoint}\n{jsonPayload}");
+                Debug.Log($"Error : {endpoint}\n{request.downloadHandler.text}");
                 onError?.Invoke(request.downloadHandler.text);
             }
             else
             {
-                Debug.Log($"Success : {endpoint}\n{jsonPayload}");
+                Debug.Log($"Success : {endpoint}\n{request.downloadHandler.text}");
                 onSuccess?.Invoke(request.downloadHandler.text);
             }
         }
