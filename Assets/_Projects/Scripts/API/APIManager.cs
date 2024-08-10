@@ -12,7 +12,7 @@ public class APIManager : Singleton<APIManager>
         if (IsNetworkAvailable())
         {
             string url = BASE_URL + endpoint;
-            Debug.Log($"{httpMethod} \n {url} \n {jsonPayload}");
+            Debug.Log($"{httpMethod}\n{url}\n{jsonPayload}");
             UnityWebRequest request = null;
 
             switch (httpMethod)
@@ -41,12 +41,12 @@ public class APIManager : Singleton<APIManager>
 
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.Log($"Error : {endpoint} \n {jsonPayload}");
+                Debug.Log($"Error : {endpoint}\n{jsonPayload}");
                 onError?.Invoke(request.downloadHandler.text);
             }
             else
             {
-                Debug.Log($"Success : {endpoint} \n {jsonPayload}");
+                Debug.Log($"Success : {endpoint}\n{jsonPayload}");
                 onSuccess?.Invoke(request.downloadHandler.text);
             }
         }
@@ -58,22 +58,42 @@ public class APIManager : Singleton<APIManager>
 
     public void Get(string endpoint, Action<string> onSuccess, Action<string> onError)
     {
-        StartCoroutine(SendRequest(endpoint, "GET", string.Empty, onSuccess, onError));
+        StartCoroutine(GetRoutine(endpoint, onSuccess, onError));
     }
 
     public void Post(string endpoint, string jsonPayload, Action<string> onSuccess, Action<string> onError)
     {
-        StartCoroutine(SendRequest(endpoint, "POST", jsonPayload, onSuccess, onError));
+        StartCoroutine(PostRoutine(endpoint, jsonPayload, onSuccess, onError));
     }
 
     public void Put(string endpoint, string jsonPayload, Action<string> onSuccess, Action<string> onError)
     {
-        StartCoroutine(SendRequest(endpoint, "PUT", jsonPayload, onSuccess, onError));
+        StartCoroutine(PutRoutine(endpoint, jsonPayload, onSuccess, onError));
     }
 
     public void Delete(string endpoint, Action<string> onSuccess, Action<string> onError)
     {
-        StartCoroutine(SendRequest(endpoint, "DELETE", "", onSuccess, onError));
+        StartCoroutine(DeleteRoutine(endpoint, onSuccess, onError));
+    }
+
+    public IEnumerator GetRoutine(string endpoint, Action<string> onSuccess, Action<string> onError)
+    {
+        return SendRequest(endpoint, "GET", string.Empty, onSuccess, onError);
+    }
+
+    public IEnumerator PostRoutine(string endpoint, string jsonPayload, Action<string> onSuccess, Action<string> onError)
+    {
+        return SendRequest(endpoint, "POST", jsonPayload, onSuccess, onError);
+    }
+
+    public IEnumerator PutRoutine(string endpoint, string jsonPayload, Action<string> onSuccess, Action<string> onError)
+    {
+        return SendRequest(endpoint, "PUT", jsonPayload, onSuccess, onError);
+    }
+
+    public IEnumerator DeleteRoutine(string endpoint, Action<string> onSuccess, Action<string> onError)
+    {
+        return SendRequest(endpoint, "DELETE", string.Empty, onSuccess, onError);
     }
 
     private bool IsNetworkAvailable()

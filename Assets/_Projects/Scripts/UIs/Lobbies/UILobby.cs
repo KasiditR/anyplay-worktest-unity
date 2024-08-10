@@ -1,8 +1,8 @@
 using System;
-using Newtonsoft.Json.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json.Linq;
 
 public class UILobby : BaseUIBehaviourCanvasGroup
 {
@@ -11,6 +11,7 @@ public class UILobby : BaseUIBehaviourCanvasGroup
     [SerializeField] private Button _buttonAddDiamond;
     [SerializeField] private Button _buttonStart;
 
+    private Coroutine _putCoroutine;
     public override void Show(Action onDone = null)
     {
         _textDiamond.text = CoreDataManager.Instance.UserData.diamonds.ToString();
@@ -41,7 +42,12 @@ public class UILobby : BaseUIBehaviourCanvasGroup
     {
         JObject updateDiamondObject = new JObject();
         updateDiamondObject["id"] = CoreDataManager.Instance.UserData.id;
-        APIManager.Instance.Put("updateDiamond", updateDiamondObject.ToString(), OnAddDiamondSuccess, OnAddDaimonFailure);
+
+        if (_putCoroutine != null)
+        {
+            StopCoroutine(_putCoroutine);
+        }
+        _putCoroutine = StartCoroutine(APIManager.Instance.PutRoutine("updateDiamond", updateDiamondObject.ToString(), OnAddDiamondSuccess, OnAddDaimonFailure));
     }
 
     private void OnAddDiamondSuccess(string response)

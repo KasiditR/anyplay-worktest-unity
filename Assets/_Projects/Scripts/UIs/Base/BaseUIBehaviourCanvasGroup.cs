@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 [RequireComponent(typeof(CanvasGroup))]
 public abstract class BaseUIBehaviourCanvasGroup : UIBehaviour
